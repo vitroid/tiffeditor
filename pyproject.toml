@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "tiffeditor"
+version = "0.2.0"
+description = "メモリ効率の良い巨大TIFF画像の部分編集ライブラリ"
+authors = ["User"]
+readme = "README.md"
+packages = [{include = "tiffeditor"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tifffile = "^2025.9.9"
+rasterio = "^1.4.3"
+opencv-python-headless = "^4.12.0.88"
+psutil = "^7.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
