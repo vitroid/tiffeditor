@@ -2,9 +2,24 @@
 name = "tiffeditor"
 version = "0.2.0"
 description = "メモリ効率の良い巨大TIFF画像の部分編集ライブラリ"
-authors = ["User"]
+authors = ["Masakazu Matsumoto <vitroid@gmail.com>"]
 readme = "README.md"
-packages = [{include = "tiffeditor"}]
+license = "MIT"
+homepage = "https://github.com/yourusername/tiffeditor"
+repository = "https://github.com/yourusername/tiffeditor"
+documentation = "https://github.com/yourusername/tiffeditor"
+keywords = ["tiff", "image", "editing", "opencv", "memory-efficient"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+# シングルファイルパッケージ用設定
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -12,7 +27,35 @@ tifffile = "^2025.9.9"
 rasterio = "^1.4.3"
 opencv-python-headless = "^4.12.0.88"
 psutil = "^7.1.0"
+numpy = "^2.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+black = "^23.0.0"
+flake8 = "^6.0.0"
+mypy = "^1.5.0"
+twine = "^4.0.0"
+build = "^0.10.0"
+
+[tool.poetry.scripts]
+tiffeditor-test = "tiffeditor:test_tiff_editor"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=tiffeditor --cov-report=html --cov-report=term-missing"

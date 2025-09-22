@@ -11,10 +11,16 @@
 - 🎯 **スライス記法**: NumPy ライクなスライス記法でのデータアクセス
 - 📊 **データ整合性**: 読み書きの整合性チェック機能内蔵
 - 💾 **部分更新**: 既存ファイルの一部のみを効率的に更新可能
-- 🎨 **BGR形式統一**: OpenCV（cv2）との完全互換
+- 🎨 **BGR 形式統一**: OpenCV（cv2）との完全互換
 - ⚡ **ScalableTiffEditor**: 仮想的な大画像操作でプロトタイプ開発を効率化
 
 ## 📦 インストール
+
+### PyPI からインストール（推奨）
+
+```bash
+pip install tiffeditor
+```
 
 ### GitHub から直接インストール
 
@@ -29,7 +35,9 @@ pip install git+https://github.com/vitroid/tiffeditor.git
 git clone https://github.com/vitroid/tiffeditor.git
 cd tiffeditor
 
-# 依存関係をインストール
+# 依存関係をインストール（開発用）
+make install-dev
+# または
 poetry install
 
 # 仮想環境をアクティブ化
@@ -38,7 +46,7 @@ poetry shell
 
 ## 🚀 基本的な使用方法
 
-### 通常のTIFF編集
+### 通常の TIFF 編集
 
 ```python
 from tiffeditor import TiffEditor
@@ -77,10 +85,10 @@ with ScalableTiffEditor(
     # ユーザーは大きな座標で操作
     test_data = np.zeros((1000, 1000, 3), dtype=np.uint8)
     test_data[:, :, 2] = 255  # BGR形式で赤色
-    
+
     # 仮想座標で書き込み（実際には100x100にリサイズされて保存）
     editor[1000:2000, 1500:2500] = test_data
-    
+
     # 仮想座標で読み込み（実際のデータが1000x1000にリサイズされて返される）
     read_data = editor[1000:2000, 1500:2500]
     print(f"読み込んだデータの形状: {read_data.shape}")  # (1000, 1000, 3)
@@ -89,12 +97,15 @@ with ScalableTiffEditor(
 ## 🎯 主要クラス
 
 ### `TiffEditor`
-メインクラス。BGR形式でTIFFファイルの読み書きを担当。OpenCV（cv2）との完全互換。
+
+メインクラス。BGR 形式で TIFF ファイルの読み書きを担当。OpenCV（cv2）との完全互換。
 
 ### `ScalableTiffEditor`
+
 仮想的に大きな画像を扱いながら、実際には縮小されたファイルで操作を行う拡張クラス。
 
 **主要な特徴:**
+
 - 仮想座標系での操作
 - 自動的なスケーリング（拡大・縮小）
 - メモリ効率の大幅改善
@@ -102,15 +113,42 @@ with ScalableTiffEditor(
 
 ## 🔧 テストと開発
 
+### クイックテスト
+
 ```bash
+# 使用例を実行
+python example_usage.py
+
 # 基本的なエディタテスト
-python -m tiffeditor.tiffeditor test_editor
+python tiffeditor.py test_editor
 
 # ScalableTiffEditorのテスト
-python -m tiffeditor.tiffeditor test_scalable
+python tiffeditor.py test_scalable
 
 # メモリ効率テスト（大容量ファイル）
-python -m tiffeditor.tiffeditor large_test
+python tiffeditor.py large_test
+```
+
+### 開発者向け Make コマンド
+
+```bash
+# ヘルプを表示
+make help
+
+# 全チェック実行（フォーマット + lint + 型チェック + テスト）
+make all-checks
+
+# コミット前チェック
+make pre-commit
+
+# パッケージビルド
+make build
+
+# TestPyPIにアップロード
+make upload-test
+
+# 本番PyPIにアップロード
+make upload
 ```
 
 ## 📈 パフォーマンス
@@ -131,7 +169,7 @@ INFO: ✅ 大きなTIFFファイルの作成・整合性チェックが成功し
 - **依存関係**: numpy, rasterio, tifffile, opencv-python
 - **対応形式**: タイル化 TIFF（Tiled TIFF）
 - **データ型**: uint8, uint16, float32 など（NumPy 対応型）
-- **色形式**: BGR（OpenCV互換）
+- **色形式**: BGR（OpenCV 互換）
 - **最大ファイルサイズ**: システムディスク容量に依存
 
 ## 🔄 移行ガイド
@@ -158,4 +196,4 @@ Issue や Pull Request を歓迎します！
 
 ---
 
-**注意**: BGR形式での統一により、OpenCV（cv2）との混在利用が完全に安全になりました。
+**注意**: BGR 形式での統一により、OpenCV（cv2）との混在利用が完全に安全になりました。

@@ -1,0 +1,35 @@
+# MANIFEST.in
+# パッケージに含めるファイルを指定
+
+# 必須ファイル
+include README.md
+include LICENSE
+include pyproject.toml
+
+# 使用例とドキュメント
+include example_usage.py
+
+# 開発用ファイル（パッケージには含めない）
+exclude Makefile
+exclude .gitignore
+exclude .python-version
+
+# ディレクトリ全体を除外
+prune tiffeditor/
+prune tests/
+prune .git/
+prune __pycache__/
+prune *.egg-info/
+prune build/
+prune dist/
+prune htmlcov/
+
+# 一時ファイルを除外
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.orig
+global-exclude *.rej
+global-exclude *~
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude *.dylib
