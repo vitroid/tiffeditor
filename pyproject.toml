@@ -5,9 +5,9 @@ description = "メモリ効率の良い巨大TIFF画像の部分編集ライブ�
 authors = ["Masakazu Matsumoto <vitroid@gmail.com>"]
 readme = "README.md"
 license = "MIT"
-homepage = "https://github.com/yourusername/tiffeditor"
-repository = "https://github.com/yourusername/tiffeditor"
-documentation = "https://github.com/yourusername/tiffeditor"
+homepage = "https://github.com/vitroid/tiffeditor"
+repository = "https://github.com/vitroid/tiffeditor"
+documentation = "https://github.com/vitroid/tiffeditor"
 keywords = ["tiff", "image", "editing", "opencv", "memory-efficient"]
 classifiers = [
     "Development Status :: 4 - Beta",
