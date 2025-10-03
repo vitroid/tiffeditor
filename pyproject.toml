@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tiffeditor"
-version = "0.2.0"
+version = "0.4.0"
 description = "メモリ効率の良い巨大TIFF画像の部分編集ライブラリ"
 authors = ["Masakazu Matsumoto <vitroid@gmail.com>"]
 readme = "README.md"
@@ -28,6 +28,7 @@ rasterio = "^1.4.3"
 opencv-python-headless = "^4.12.0.88"
 psutil = "^7.1.0"
 numpy = "^2.0.0"
+pyperbox = "^0.1.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
